@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>The Situationist Times Archive</title>
+    <link href="style.css" rel="stylesheet" />
+    <meta name="description" content="The Situationist Times Archive" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Lauren Alexander and Gianna Inguagiato" />
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- Intro -->
+    <header>
+      <div class="headernav">
+        <h1>The Situationist Times Archive</h1>
+        <a href="#introduction">Introduction</a>
+        <a href="#library">Library</a>
+        <a href="#jacqueline">Jacequline de Jong</a>
+
+      </div>
+    </header>
+    <main>
+      <!-- Descriptions -->
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+          In the years between 1962 and 1967, Dutch artist Jacqueline de Jong
+          edited and issued six issues of The Situationist Times. This was a
+          collaborative, multi-lingual, and multi-disciplinary journal. It
+          featured a diverse array of contributions, including essays, poems,
+          photographs, collages, and comics, and it covered a wide range of
+          topics – urbanism, consumerism, art, and politics. The journal
+          synthesized threads of varied intellectual disciplines into a coherent
+          critique against advanced capitalism and its inherent injustices.
+        </p>
+      </section>
+      <section id="library">
+        <h2>Select an edition</h2>
+        <p></p>
+        <div class="library-scroll">
+          <div class="scroll-content">
+            <a href="library/ed-1/ed-1.html"><img src="images/cover/cover1.png" alt="cover1" class="cover"></a>
+            <a href="library/ed-2/ed-2.html"><img src="images/cover/cover2.png" alt="cover1" class="cover"></a>
+            <a href="library/ed-3/ed-3.html"><img src="images/cover/cover3.png" alt="cover1" class="cover"></a>
+            <a href="library/ed-4/ed-4.html"><img src="images/cover/cover4.png" alt="cover1" class="cover"></a>
+            <a href="library/ed-5/ed-5.html"><img src="images/cover/cover5.png" alt="cover1" class="cover"></a>
+            <a href="library/ed-6/ed-6.html"><img src="images/cover/cover6.png" alt="cover1" class="cover"></a>
+          </div>
+        </div>
+      </section>
+      <section id="jacqueline">
+        <h2>Jacqueline de Jong</h2>
+        <div class="bio">
+          <img src="images/bio.jpeg" alt="bio" class="bio-img" />
+          <p>
+            Jacqueline de Jong’s art embodies revolutionary aesthetics and
+            politics, blending figuration and narrative to create archetypal
+            depictions of human suffering and strife. As a WWII émigrée, her
+            work reflects on trauma and powerlessness, yet resists fixed
+            interpretations.
+          </p>
+          <p>
+            Following her expulsion from the Situationist International
+            movement, De Jong founded The Situationist Times and engaged in
+            local activism, crafting disruptive public interventions. Her
+            prolific art, marked by fractured compositions, explores cruelty,
+            humor, and the human condition, resulting in a uniquely affecting
+            body of work.
+          </p>
+        </div>
+      </section>
+      <section id="timeline">
+        <h2>Timeline</h2>
+        <iframe
+          title="tikitoki"
+          id="iframe-timeline"
+          width="900"
+          height="480"
+          src="https://www.tiki-toki.com/timeline/embed/2054398/9919930504/"
+        ></iframe>
+        <!-- Bottom of site -->
+      </section>
+      <!-- Bottom of site -->
+    </main>
+    <footer>
+      <br />
+      <h2>That's all...</h2>
+      <a href="#introduction">Back to top</a>
+    </footer>
+
+    <!--React implementation -->
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+      const { createRoot } = ReactDOM;
+
+      function ImageGallery() {
+        const [images, setImages] = useState([]);
+        const [error, setError] = useState(null);
+        const [currentIndex, setCurrentIndex] = useState(0);
+
+        useEffect(() => {
+          const apiUrl = "https://api.unsplash.com/search/photos";
+          const apiKey = "ROecJVFlyVv9hK6IyuRQ_ZQYD1srp8mPhNvyCD6Oesk";
+          const searchQuery = "Dutch art";
+
+          fetch(`${apiUrl}?client_id=${apiKey}&query=${searchQuery}`)
+            .then((response) => response.json())
+            .then((data) => {
+              const imageUrls = data.results.map((img) => img.urls.regular);
+              setImages(imageUrls);
+            })
+            .catch((err) => {
+              console.error("Failed to fetch images:", err);
+              setError("Failed to load images.");
+            });
+        }, []);
+
+        const goToPrevious = () => {
+          setCurrentIndex((prevIndex) =>
+            prevIndex > 0 ? prevIndex - 1 : images.length - 1
+          );
+        };
+
+        const goToNext = () => {
+          setCurrentIndex((prevIndex) =>
+            prevIndex < images.length - 1 ? prevIndex + 1 : 0
+          );
+        };
+
+        return (
+          <div className="gallery-container">
+            {error ? (
+              <p>{error}</p>
+            ) : (
+              <>
+                <button onClick={goToPrevious}>&lt;</button>
+                <img
+                  src={images[currentIndex]}
+                  alt={`Gallery img ${currentIndex}`}
+                />
+                <button onClick={goToNext}>&gt;</button>
+              </>
+            )}
+          </div>
+        );
+      }
+
+      const root = createRoot(document.getElementById("root"));
+      root.render(<ImageGallery />);
+    </script>
+  </body>
+</html>

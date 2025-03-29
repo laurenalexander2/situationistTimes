@@ -1,0 +1,176 @@
+* {
+  margin: 0px;
+  justify-content: space-around;
+}
+
+h1,
+h3 {
+  font-family: "Courier New", Courier, monospace;
+}
+
+h2 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 400;
+}
+header h1 {
+  margin: 10px;
+  position: relative;
+  margin-right: 70px;
+}
+
+
+.button-style {
+  position: absolute;
+  top: 10px; /* 10px from the top of the viewport */
+  right: 10px; /* 10px from the right of the viewport */
+  padding: 10px 15px;
+  background-color:  rgb(70, 113, 192);
+  color: white;
+  border: none;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s; /* Smooth transition for background color */
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.button-style:hover {
+  background-color: red; /* Changes to red on hover */
+}
+
+body {
+  background-color: rgb(242, 241, 227);
+  margin: 5px;
+}
+
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  width: 28%;
+  justify-content: space-evenly;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.pdf-container {
+  overflow: auto; /* Enable scrolling for the PDF viewer */
+  width: 70%;
+  height: 800px;
+  justify-content: center;
+}
+
+iframe {
+  height: 100%;
+  width: 100%;
+}
+
+#chapters-list {
+  background-color: #e2ce13;
+  list-style: none;
+  height: fit-content;
+  float: right;
+  border-style: dashed;
+}
+
+.chapter {
+  position: relative;
+  border-style: dashed;
+  border-left: none;
+  border-right: none;
+  border-top: 0px;
+  padding-left: 5px;
+  font-size: 20px;
+}
+
+.chapter button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: inherit;
+  text-align: left;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 20px;
+}
+
+.button-link {
+  display: inline-block;
+  color: #007bff;
+  text-align: left;
+  text-decoration: underline;
+  font-family: "Courier New", Courier, monospace;
+  border: none;
+  cursor: pointer;
+}
+
+.button-link:hover {
+  color: red;
+}
+
+.chapter-notes {
+  display: none;
+}
+
+.chapter:hover .chapter-notes,
+.chapter-notes.visible,
+.chapter:hover {
+  display: block;
+  background-color: #fae847;
+  color: rgb(0, 0, 0);
+}
+
+#context {
+  background-color: rgb(70, 113, 192);
+  color: white;
+  border-style: dashed;
+  padding: 5px;
+}
+
+/* Base styles are defined above, these are additional media query adjustments */
+
+@media (max-width: 768px) {
+  header button {
+    font-size: 16px; /* Smaller font size for smaller screens */
+  }
+
+  .about,
+  .pdf-container {
+    width: 100%; /* Stack containers vertically on small screens */
+    height: auto; /* Adjust height as needed */
+  }
+
+  .flexbox {
+    flex-direction: column; /* Stack children of flexbox vertically */
+  }
+
+  .chapter button {
+    font-size: 16px; /* Adjust button font size for readability */
+  }
+
+  #chapters-list {
+    float: none; /* Remove floating to align properly on small screens */
+  }
+  .pdf-container {
+    height: 300px; /* Increase the height for medium devices */
+  }
+}
+@media (max-width: 480px) {
+  body {
+    margin: 2px; /* Reduce margin for very small screens */
+  }
+
+  header {
+    margin: 5px; /* Smaller margin in the header */
+  }
+
+  .chapter {
+    font-size: 16px; /* Even smaller font size for ultra small devices */
+  }
+  .pdf-container {
+    height: 300px; /* Increase more for smaller devices */
+  }
+}
