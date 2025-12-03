@@ -12,20 +12,17 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
-    <!-- Intro -->
     <header>
       <div class="headernav">
         <h1>The Situationist Times Archive</h1>
         <a href="#introduction">Introduction</a>
         <a href="#library">Library</a>
-        <a href="#jacqueline">Jacequline de Jong</a>
-
+        <a href="#jacqueline">Jacqueline de Jong</a>
       </div>
     </header>
     <main>
-      <!-- Descriptions -->
-      <section id="introduction">
-        <h2>Introduction</h2>
+      <section>
+        <h2 id="introduction">Introduction</h2>
         <p>
           In the years between 1962 and 1967, Dutch artist Jacqueline de Jong
           edited and issued six issues of The Situationist Times. This was a
@@ -37,22 +34,21 @@
           critique against advanced capitalism and its inherent injustices.
         </p>
       </section>
-      <section id="library">
-        <h2>Select an edition</h2>
-        <p></p>
+      <section>
+        <h2 id="library">Select an edition</h2>
         <div class="library-scroll">
           <div class="scroll-content">
-            <a href="library/ed-1/ed-1.html"><img src="images/cover/cover1.png" alt="cover1" class="cover"></a>
-            <a href="library/ed-2/ed-2.html"><img src="images/cover/cover2.png" alt="cover1" class="cover"></a>
-            <a href="library/ed-3/ed-3.html"><img src="images/cover/cover3.png" alt="cover1" class="cover"></a>
-            <a href="library/ed-4/ed-4.html"><img src="images/cover/cover4.png" alt="cover1" class="cover"></a>
-            <a href="library/ed-5/ed-5.html"><img src="images/cover/cover5.png" alt="cover1" class="cover"></a>
-            <a href="library/ed-6/ed-6.html"><img src="images/cover/cover6.png" alt="cover1" class="cover"></a>
+            <a href="library/ed-1/ed-1.html"><img src="images/cover/cover1.png" alt="cover1" class="cover" /></a>
+            <a href="library/ed-2/ed-2.html"><img src="images/cover/cover2.png" alt="cover2" class="cover" /></a>
+            <a href="library/ed-3/ed-3.html"><img src="images/cover/cover3.png" alt="cover3" class="cover" /></a>
+            <a href="library/ed-4/ed-4.html"><img src="images/cover/cover4.png" alt="cover4" class="cover" /></a>
+            <a href="library/ed-5/ed-5.html"><img src="images/cover/cover5.png" alt="cover5" class="cover" /></a>
+            <a href="library/ed-6/ed-6.html"><img src="images/cover/cover6.png" alt="cover6" class="cover" /></a>
           </div>
         </div>
       </section>
-      <section id="jacqueline">
-        <h2>Jacqueline de Jong</h2>
+      <section>
+        <h2 id="jacqueline">Jacqueline de Jong</h2>
         <div class="bio">
           <img src="images/bio.jpeg" alt="bio" class="bio-img" />
           <p>
@@ -81,17 +77,12 @@
           height="480"
           src="https://www.tiki-toki.com/timeline/embed/2054398/9919930504/"
         ></iframe>
-        <!-- Bottom of site -->
       </section>
-      <!-- Bottom of site -->
     </main>
     <footer>
-      <br />
       <h2>That's all...</h2>
       <a href="#introduction">Back to top</a>
     </footer>
-
-    <!--React implementation -->
 
     <script type="text/babel">
       const { useState, useEffect } = React;
@@ -113,8 +104,7 @@
               const imageUrls = data.results.map((img) => img.urls.regular);
               setImages(imageUrls);
             })
-            .catch((err) => {
-              console.error("Failed to fetch images:", err);
+            .catch(() => {
               setError("Failed to load images.");
             });
         }, []);
@@ -138,10 +128,7 @@
             ) : (
               <>
                 <button onClick={goToPrevious}>&lt;</button>
-                <img
-                  src={images[currentIndex]}
-                  alt={`Gallery img ${currentIndex}`}
-                />
+                <img src={images[currentIndex]} alt={`Gallery img ${currentIndex}`} />
                 <button onClick={goToNext}>&gt;</button>
               </>
             )}

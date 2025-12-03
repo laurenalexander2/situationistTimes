@@ -1,7 +1,17 @@
 * {
-  flex-wrap: wrap;
-  margin: 0em;
-  padding:0px
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "LaurenFont", Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 35px;
+  background-color: #e3bd32;
 }
 
 h1,
@@ -11,97 +21,8 @@ h3 {
   text-align: center;
 }
 
-body {
-  font-family: "LaurenFont", Verdana, Geneva, Tahoma, sans-serif;
-  line-height: 35px;
-  width: 100%;
-  background-color: #e3bd32;
-  padding: 0px;
-}
-
-@media only screen and (min-width: 501px) {
-  .scroll-content {
-    width: 2200px;
-    height: 100%;
-    background: linear-gradient(to right, #e3bd32, #092301);
-    font-size:0px;
-  }
-
-  .library-scroll {
-    width: 100%; /* Adjust the width as needed */
-    white-space: nowrap; /* Prevents text wrapping */
-    overflow-x: auto; /* Enables horizontal scrolling */
-
-  }
-
-  .cover {
-    height: 300px;
-    display: inline-block;
-    margin: 60px;
-  }
-
-  .cover:hover {
-    height: 320px;
-    margin: 50px;
-    margin-right: 55px;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .library-scroll {
-    width: 100%;
-    max-height: none; /* Remove maximum height */
-    overflow-y: visible; /* Allow content to overflow vertically */
-    flex-wrap: wrap;
-  }
-
-  .scroll-content {
-    width: 100%;
-    background: linear-gradient(to bottom, #e3bd32, #092301);
-  }
-
-  #library {
-    margin: 0px;
-    padding: 0px;
-  }
-
-  .cover {
-    width: 40%;
-    display: inline-block;
-    margin-left: 30%;
-    margin-bottom: 20%;
-    font: red;
-    
-  }
-
-  .cover:hover {
-    width: 46%;
-    margin-left: 27%;
-    margin-bottom: 13%;
-    font: red;
-  }
-
-}
-
-.bio {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Vertically centers the content */
-  justify-content: center; /* Horizontally centers the content */
-  width: 100%;
-}
-
-.bio-img {
-  width: 40%; /* Adjust the width as necessary */
-  margin-bottom: 10px; /* Optional: adds space between the image and the following text */
-}
-
-@media only screen and (max-width: 650px) {
-  .bio-img {
-    float: none; /* Removes float */
-    width: 80%; /* Adjust width as needed */
-    margin: 0 auto; /* Centers the image horizontally and removes margin */
-  }
+h2[id] {
+  scroll-margin-top: 200px;
 }
 
 section {
@@ -109,49 +30,109 @@ section {
   margin-bottom: 200px;
 }
 
-#introduction {
-  margin-left: 20px;
-  margin-right: 10px;
+.headernav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#jacqueline {
-  margin-left: 20px;
-  margin-right: 10px;
+.headernav a {
+  margin: 0 10px;
 }
-header,
+
+header {
+  background-color: rgb(131, 24, 24);
+  color: #fef6c5;
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
 footer {
   background-color: rgb(131, 24, 24);
   color: #fef6c5;
   padding: 20px;
   text-align: center;
-  width: 100%;
-  box-sizing: border-box;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 
 footer a {
   color: #fef6c5;
 }
 
+a {
+  color: #fef6c5;
+  font-style: italic;
+}
+
+a:hover {
+  color: #03650e;
+  font-size: 13pt;
+}
+
+.library-scroll {
+  padding-top: 15px;
+  width: 100%;
+  overflow-y: visible;
+}
+
+.scroll-content {
+  width: 100%;
+  background: linear-gradient(to bottom, #e3bd32, #092301);
+}
+
+.cover {
+  width: 30%;
+  display: inline-block;
+  margin-left: 35%;
+  margin-bottom: 10%;
+  transition: 0.2s;
+}
+
+.cover:hover {
+  width: 32%;
+  margin-left: 34%;
+  margin-bottom: 8%;
+}
+
+@media (max-width: 550px) {
+  .cover {
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 15%;
+  }
+
+  .cover:hover {
+    width: 52%;
+    margin-left: 24%;
+    margin-bottom: 12%;
+  }
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.bio-img {
+  width: 40%;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 650px) {
+  .bio-img {
+    width: 80%;
+    margin: 0 auto 10px;
+  }
+}
+
 #iframe-timeline {
   width: 90%;
   height: 450px;
   margin: 5%;
-}
-a,
-a {
-  color: #fef6c5;
-}
-
-a:link {
-  
-  font-style: italic;
-}
-a:hover {
-  color: #03650e;
-  font-size: 13pt;
 }
 
 input[type="submit"] {
@@ -165,7 +146,6 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background: #033808;
-  color: white;
   border-color: #e74c3c;
   color: #e74c3c;
 }
@@ -175,15 +155,15 @@ input[type="submit"]:hover {
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 80%; /* Adjust based on your preference */
+  width: 80%;
   margin: 0 auto;
-  height: 500px; /* Adjust based on your preference */
+  height: 500px;
 }
 
 .gallery-container img {
   max-width: 100%;
   max-height: 100%;
-  display: block; /* Removes bottom space/gap */
+  display: block;
 }
 
 .gallery-container button {
